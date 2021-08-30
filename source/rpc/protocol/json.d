@@ -58,7 +58,7 @@ public:
     ///
     private static immutable string[int] CODES_MESSAGE;
 
-    static this()
+    shared static this()
     @safe {
         CODES_MESSAGE[StdCodes.parseError]     = "Parse error";
         CODES_MESSAGE[StdCodes.invalidRequest] = "Invalid Request";
@@ -1049,7 +1049,7 @@ protected:
 
             if (response.isError())
             {
-                throw new JsonRpcMethodException(response.error);
+                throw new JsonRpcMethodException(response.error.get);
             }
 
             // void return type
@@ -1059,7 +1059,7 @@ protected:
             }
             else
             {
-                return deserializeJson!RT(response.result);
+                return deserializeJson!RT(response.result.get);
             }
         }
         catch (JSONException e)
