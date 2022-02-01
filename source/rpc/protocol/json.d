@@ -1059,7 +1059,7 @@ protected:
         enum objectParamAtt = findFirstUDA!(RpcMethodObjectParams, Func);
         enum methodNameAtt = findFirstUDA!(RpcMethodAttribute, Func);
         // parameters are rendered as array if annotated with @rpcArrayParams
-        enum bool paramsAsArray = hasRpcArrayParams!Func || (PTT.length > 1);
+        enum bool paramsAsArray = true;
 
         try
         {
@@ -1075,7 +1075,10 @@ protected:
                 // fill the json array or the unique value
                 static foreach (i, PT; PTT)
                 {
-                    jsonParams.appendArrayElement(serializeToJson(args[i]));
+                    static if (paramsAsArray)
+                        jsonParams.appendArrayElement(serializeToJson(args[i]));
+                    else
+                        jsonParams = serializeToJson(args[i]);
                 }
             }
             // render params as a json object by using the param name
