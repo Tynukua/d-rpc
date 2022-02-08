@@ -1,7 +1,8 @@
 {
 	"name": "tynukrpc",
 	"authors": [
-		"Eliott Dumeix"
+        "Eliott Dumeix",
+        "Tynuk"
 	],
 	"description": "An RPC library",
 	"targetType": "library",
