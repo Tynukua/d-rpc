@@ -10,7 +10,7 @@
 		"autointf": "~>1.2.0",
 		"vibe-d:data":  "*",
 		"vibe-d:utils": "*",
-		"vibe-d:core":  "*",
+		"vibe-core":  "*",
 		"vibe-d:http":  "*"
 	},
 	"configurations": [
